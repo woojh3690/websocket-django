@@ -3,7 +3,7 @@ from asgiref.sync import async_to_sync
 import json
 
 class ChatConsumer(WebsocketConsumer):
-    
+
   	# websocket 연결 시 실행
     def connect(self):
         async_to_sync(self.channel_layer.group_add)("chat", self.channel_name)
@@ -22,11 +22,11 @@ class ChatConsumer(WebsocketConsumer):
 
         # 클라이언트로부터 받은 메세지를 다시 클라이언트로 송신
         self.send(text_data=json.dumps({
-            'message': "server : " + message
+            'message': "receive : " + message
         }))
 
     # 그룹 메시지 이벤트 핸들러
     def chat_message(self, event):
         self.send(text_data=json.dumps({
-            'message': "server : " + event['message']
+            'message': "background message : " + event['message']
         }))

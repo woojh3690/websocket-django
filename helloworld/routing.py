@@ -31,7 +31,7 @@ def kafkaConsum():
             "chat",
             {
                 'type': 'chat_message',
-                'message': "hi"
+                'message': "working"
             }
         )
         time.sleep(2)
